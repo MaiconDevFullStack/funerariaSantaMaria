@@ -29,6 +29,20 @@
       <li><a href="#legenda">Sobre Nós</a></li>
       <li><a href="#cta" class="nav-cta">Fale Conosco</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MENU MOBILE -->
+  <nav class="nav-mobile-menu" id="nav-mobile-menu" aria-label="Menu mobile">
+    <ul>
+      <li><a href="#carrossel" class="nav-mob-link">Nossa Mensagem</a></li>
+      <li><a href="#planos" class="nav-mob-link">Planos</a></li>
+      <li><a href="#produtos" id="nav-produtos-mob" class="nav-mob-link">Produtos &amp; Serviços</a></li>
+      <li><a href="#legenda" class="nav-mob-link">Sobre Nós</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta-mobile nav-mob-link">Fale Conosco</a>
   </nav>
 
   <!-- HERO -->
@@ -851,10 +865,30 @@
   </script>
 
   <script>
+    /* ── Hamburguer ── */
+    const hamburger    = document.getElementById('nav-hamburger');
+    const mobileMenu   = document.getElementById('nav-mobile-menu');
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.querySelectorAll('.nav-mob-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  </script>
+
+  <script>
     /* ── Modal Produtos & Serviços ── */
     const prodOverlay = document.getElementById('produtos-overlay');
     const prodClose   = document.getElementById('produtos-close');
     const navProd     = document.getElementById('nav-produtos');
+    const navProdMob  = document.getElementById('nav-produtos-mob');
 
     function openProdutos(e) {
       e && e.preventDefault();
@@ -867,6 +901,7 @@
     }
 
     navProd.addEventListener('click', openProdutos);
+    if (navProdMob) navProdMob.addEventListener('click', openProdutos);
     prodClose.addEventListener('click', closeProdutos);
     prodOverlay.addEventListener('click', e => {
       if (e.target === prodOverlay) closeProdutos();
