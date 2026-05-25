@@ -109,33 +109,20 @@
 
     /* Menu mobile drawer */
     .nav-mobile-menu {
-      /* oculto em desktop — a media query ≤900px o torna visível */
       display: none;
       position: fixed;
       top: 70px;
-      left: 0; right: 0;
-      background: rgba(245,242,237,0.98);
-      backdrop-filter: blur(12px);
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: #f5f2ed;
+      border-top: 1px solid var(--beige);
       border-bottom: 2px solid var(--beige);
-      z-index: 99;
-      padding: 12px 0 24px;
-      /* sem max-height, sem clip-path, sem overflow hidden */
+      box-shadow: 0 8px 24px rgba(10,30,53,0.12);
+      padding: 8px 0 20px;
     }
-    /* estado fechado no mobile */
-    .nav-mobile-menu {
-      visibility: hidden;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
-    }
-    /* estado aberto */
     .nav-mobile-menu.open {
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
+      display: block;
     }
     .nav-mobile-menu ul {
       list-style: none;
@@ -147,19 +134,23 @@
     .nav-mobile-menu ul li a {
       display: block;
       padding: 15px 28px;
-      font-size: 0.92rem;
-      letter-spacing: 0.07em;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--brown);
       text-decoration: none;
       border-bottom: 1px solid var(--beige);
-      transition: background 0.2s, color 0.2s;
+      background: transparent;
+      transition: background 0.18s, color 0.18s;
     }
     .nav-mobile-menu ul li a:hover,
-    .nav-mobile-menu ul li a:active { background: var(--beige); color: var(--dark); }
+    .nav-mobile-menu ul li a:active {
+      background: var(--beige);
+      color: var(--dark);
+    }
     .nav-mobile-menu .nav-cta-mobile {
       display: block;
-      margin: 16px 24px 4px;
+      margin: 16px 24px 0;
       text-align: center;
       background: var(--brown);
       color: var(--white);
@@ -169,7 +160,7 @@
       font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.06em;
-      transition: background 0.25s;
+      transition: background 0.22s;
     }
     .nav-mobile-menu .nav-cta-mobile:hover { background: var(--dark); }
 
@@ -964,7 +955,6 @@
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-mobile-menu { display: block; }
       .nav-logo-img { width: 54px; height: 54px; }
       .slide { flex: 0 0 calc(80vw); }
       .plan-layout { grid-template-columns: 1fr; gap: 32px; }
