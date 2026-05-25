@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "empresa": "Funerária Santa Maria",
+    "versao": "1.1.0",
+    "atualizado": "2026-05-18"
+  },
+  "entradas": [
+    {
+      "id": "saudacao",
+      "tags": ["oi", "ola", "bom dia", "boa tarde", "boa noite", "olá", "hello", "tudo bem"],
+      "pergunta": "Saudações e boas-vindas",
+      "resposta": "Olá! Seja bem-vindo à Funerária Santa Maria. Estamos aqui para te ajudar com informações sobre nossos serviços e planos preventivos. Como posso te ajudar hoje?"
+    },
+    {
+      "id": "plano_bronze",
+      "tags": ["bronze", "plano básico", "basico", "cobertura básica", "essencial", "simples", "barato", "menor plano"],
+      "pergunta": "O que inclui o Plano Bronze?",
+      "resposta": "O **Plano Bronze** é nossa cobertura essencial, ideal para quem busca dignidade com segurança. Inclui:\n• Translado local\n• Preparação e higienização\n• Urna funerária básica\n• Sala de velório\n• Sepultamento ou cremação\n\nÉ a forma mais acessível de garantir uma despedida digna para sua família. Deseja saber mais ou entrar em contato?"
+    },
+    {
+      "id": "plano_prata",
+      "tags": ["prata", "plano intermediário", "intermediario", "prata", "médio", "medio", "completo"],
+      "pergunta": "O que inclui o Plano Prata?",
+      "resposta": "O **Plano Prata** oferece conforto adicional com serviços de homenagem especiais. Inclui:\n• Translado regional\n• Preparação completa\n• Urna funerária superior\n• Sala de velório climatizada\n• Serviço de homenagem especial\n• Assessoria documental\n\nÉ ideal para quem deseja uma despedida mais personalizada e acolhedora. Quer saber o valor mensal?"
+    },
+    {
+      "id": "plano_premium",
+      "tags": ["premium", "completo", "melhor", "vip", "top", "tudo", "luxo", "ouro", "gold", "mais completo"],
+      "pergunta": "O que inclui o Plano Premium?",
+      "resposta": "O **Plano Premium** é o nosso mais completo, sem preocupações para a família. Inclui:\n• Translado nacional\n• Preparação especializada\n• Urna premium personalizada\n• Sala VIP de velório\n• Cortejo e cerimônia completa\n• Todos os documentos incluídos\n• Suporte 24h para a família\n\nÉ a escolha de quem quer deixar tudo sob controle para quem ama. Posso te conectar com um consultor?"
+    },
+    {
+      "id": "planos_geral",
+      "tags": ["planos", "preços", "coberturas", "opções", "quais planos", "ver planos", "plano preventivo", "preventivo"],
+      "pergunta": "Quais planos a Funerária Santa Maria oferece?",
+      "resposta": "A Funerária Santa Maria oferece **3 planos preventivos**:\n\n🏅 **Bronze** — Cobertura essencial, translado local, urna básica e velório.\n🥈 **Prata** — Cobertura regional, urna superior, homenagem especial e assessoria documental.\n🏆 **Premium** — Cobertura nacional completa, urna personalizada, suporte 24h e toda documentação.\n\nTodos os planos são pensados para que sua família não precise se preocupar com nada no momento da perda. Quer detalhes de algum plano específico?"
+    },
+    {
+      "id": "planejamento_preventivo",
+      "tags": ["por que planejar", "planejamento", "preventivo", "importância", "razão", "motivo", "antecipado", "antes", "preparar"],
+      "pergunta": "Por que é importante ter um plano preventivo?",
+      "resposta": "Planejar com antecedência é um dos maiores atos de amor que você pode deixar para sua família. Quando há um plano, sua família não precisa lidar com:\n\n• Decisões financeiras urgentes em momento de choque\n• Burocracia exaustiva (documentos, certidões, registros)\n• Pressão de tempo dos prazos legais\n• Luto interrompido por urgências práticas\n\nCom nosso plano preventivo, a família pode focar inteiramente no que importa: a despedida e as boas lembranças."
+    },
+    {
+      "id": "contato",
+      "tags": ["contato", "telefone", "whatsapp", "falar", "ligar", "atendimento", "número", "email", "consultor", "fale conosco"],
+      "pergunta": "Como entrar em contato com a Funerária Santa Maria?",
+      "resposta": "Você pode entrar em contato conosco pelos seguintes canais:\n\n📱 **WhatsApp:** (00) 00000-0000\n📞 **Telefone:** (00) 0000-0000\n🕐 **Atendimento:** 24 horas por dia, 7 dias por semana\n\nOu se preferir, clique no botão **\"Falar no WhatsApp\"** no final da página. Estamos sempre prontos para atender sua família com cuidado e empatia."
+    },
+    {
+      "id": "horario",
+      "tags": ["horário", "horario", "funciona", "aberto", "atende", "quando", "horas", "plantão", "24h"],
+      "pergunta": "Qual o horário de atendimento?",
+      "resposta": "A Funerária Santa Maria funciona **24 horas por dia, 7 dias por semana**, incluindo feriados. Sabemos que momentos difíceis não escolhem hora. Nossa equipe está sempre disponível para atender sua família com cuidado e agilidade."
+    },
+    {
+      "id": "translado",
+      "tags": ["translado", "transporte", "transferência", "traslado", "outra cidade", "viagem", "distância", "longe"],
+      "pergunta": "Como funciona o translado?",
+      "resposta": "O translado varia conforme o plano contratado:\n\n• **Bronze:** Translado local (dentro do município)\n• **Prata:** Translado regional (estado ou região)\n• **Premium:** Translado nacional (qualquer cidade do Brasil)\n\nTodos os transportes são realizados com veículos especializados, respeitando todas as normas sanitárias e legais."
+    },
+    {
+      "id": "cremacao",
+      "tags": ["cremação", "cremacao", "cremar", "cinzas", "incinerar", "crematorio"],
+      "pergunta": "A funerária oferece cremação?",
+      "resposta": "Sim! A Funerária Santa Maria oferece o serviço de **cremação** como alternativa ao sepultamento. Este serviço está disponível no **Plano Bronze** e em todos os planos superiores. Realizamos todo o processo com respeito, dignidade e acompanhamento familiar. Deseja mais informações sobre a cremação?"
+    },
+    {
+      "id": "documentacao",
+      "tags": ["documentos", "documentação", "burocracia", "certidão", "registro", "papelada", "decreto", "legal"],
+      "pergunta": "Vocês auxiliam com a documentação?",
+      "resposta": "Sim! A burocracia é uma das maiores fontes de estresse para famílias em luto. Por isso:\n\n• **Plano Prata:** Inclui assessoria documental completa\n• **Plano Premium:** Todos os documentos estão 100% incluídos e gerenciados por nós\n\nNossos especialistas cuidam de certidões de óbito, registros em cartório e autorizações necessárias para que a família não precise se preocupar com nada."
+    },
+    {
+      "id": "velorio",
+      "tags": ["velório", "velorio", "sala", "wakes", "cerimônia", "cerimonia", "ritual", "missa", "culto"],
+      "pergunta": "Como são as salas de velório?",
+      "resposta": "Nossas salas de velório são ambientes acolhedores e respeitosos:\n\n• **Bronze:** Sala de velório padrão\n• **Prata:** Sala climatizada com serviço de homenagem especial\n• **Premium:** Sala VIP com estrutura completa para cerimônia e cortejo\n\nTodas as salas são preparadas com cuidado para proporcionar um momento de paz e despedida digna."
+    },
+    {
+      "id": "pagamento",
+      "tags": ["pagamento", "pagar", "parcelas", "parcelado", "mensalidade", "valor", "quanto custa", "preço", "preco", "custo"],
+      "pergunta": "Como funciona o pagamento dos planos?",
+      "resposta": "Nossos planos preventivos são pagos em **mensalidades acessíveis**, distribuindo o valor de forma justa ao longo do tempo — sem peso financeiro repentino para a família.\n\nEvitam-se assim os gastos emergenciais inesperados que ocorrem quando não há planejamento prévio.\n\nPara saber o valor exato de cada plano, entre em contato com um de nossos consultores pelo WhatsApp ou telefone. Atendemos 24h!"
+    },
+    {
+      "id": "urna",
+      "tags": ["urna", "caixão", "caixao", "ataúde", "ataude", "esquife", "modelo"],
+      "pergunta": "Quais tipos de urna estão disponíveis?",
+      "resposta": "Oferecemos diferentes tipos de urna conforme o plano:\n\n• **Bronze:** Urna funerária básica, com dignidade e qualidade\n• **Prata:** Urna funerária superior, com acabamento refinado\n• **Premium:** Urna premium personalizada, conforme os desejos e características da pessoa\n\nTodas as urnas seguem os padrões sanitários e são escolhidas com respeito e cuidado."
+    },
+    {
+      "id": "sobre",
+      "tags": ["quem são", "sobre", "empresa", "história", "funerária santa maria", "fundação", "missão", "valores"],
+      "pergunta": "Quem é a Funerária Santa Maria?",
+      "resposta": "A **Funerária Santa Maria** é uma empresa dedicada a oferecer serviços funerários com amor, respeito e dignidade. Nossa missão é estar ao lado das famílias nos momentos mais difíceis, cuidando de cada detalhe para que elas possam focar no que realmente importa: as boas lembranças e a despedida digna.\n\nAtuamos 24 horas por dia com uma equipe treinada para acolher e apoiar cada família com empatia e profissionalismo."
+    },
+    {
+      "id": "horario_funcionamento",
+      "tags": ["horário", "horario", "funciona", "aberto", "fecha", "atende", "quando", "horas", "plantão", "24h", "domingo", "feriado", "sábado", "sabado", "dia", "noite", "madrugada", "turno"],
+      "pergunta": "Qual o horário completo de funcionamento?",
+      "resposta": "A **Funerária Santa Maria** opera **24 horas por dia, 7 dias por semana**, sem exceção.\n\n⏰ **Atendimento ao público:**\n• Segunda a sexta: 08h às 20h (presencial)\n• Sábados: 08h às 14h (presencial)\n• Domingos e feriados: somente via telefone e WhatsApp\n\n📞 **Plantão 24h (urgências):**\n• Telefone: (11) 3456-7890\n• WhatsApp: (11) 98765-4321\n• Disponível todos os dias, inclusive madrugada\n\nSempre haverá alguém pronto para te atender com cuidado e agilidade."
+    },
+    {
+      "id": "valores_planos",
+      "tags": ["valor", "preço", "preco", "quanto", "custo", "mensalidade", "parcela", "plano quanto", "bronze valor", "prata valor", "premium valor", "tabela", "tabela de preços", "plano preventivo valor"],
+      "pergunta": "Quais são os valores dos planos preventivos?",
+      "resposta": "Nossos **planos preventivos** têm mensalidades acessíveis para proteger sua família:\n\n🏅 **Plano Bronze — R$ 49,90/mês**\n• Cobertura para 1 titular\n• Serviços essenciais incluídos\n• Sem carência após 90 dias\n\n🥈 **Plano Prata — R$ 89,90/mês**\n• Cobertura para titular + cônjuge\n• Homenagens especiais inclusas\n• Assistência documental\n\n🏆 **Plano Premium — R$ 149,90/mês**\n• Cobertura para toda a família (até 4 dependentes)\n• Translado nacional\n• Suporte 24h dedicado\n• Cerimônia personalizada\n\n💳 Aceitamos cartão de crédito, débito automático e boleto bancário. Consulte condições para pagamento anual com desconto de 10%."
+    },
+    {
+      "id": "valores_avulso",
+      "tags": ["avulso", "sem plano", "particular", "serviço avulso", "fora do plano", "contratar", "preço avulso", "custo avulso", "valor sem plano", "direto"],
+      "pergunta": "Quais os valores dos serviços contratados sem plano?",
+      "resposta": "Para quem não possui plano preventivo, oferecemos serviços **avulsos com pagamento único**:\n\n💰 **Tabela de Serviços Avulsos:**\n• Preparação e higienização: R$ 800,00\n• Sala de velório (12h): R$ 1.200,00\n• Sala de velório VIP (12h): R$ 2.200,00\n• Translado local (até 50 km): R$ 650,00\n• Translado regional (até 300 km): R$ 1.800,00\n• Translado nacional (acima de 300 km): a partir de R$ 3.500,00\n• Cremação simples: R$ 3.200,00\n• Cremação com cerimônia: R$ 4.800,00\n• Sepultamento (sem jazigo): R$ 1.500,00\n• Assessoria documental completa: R$ 600,00\n• Cortejo fúnebre (carro + 2 auxiliares): R$ 900,00\n\n⚠️ Valores sujeitos a alteração. Solicite orçamento pelo (11) 98765-4321."
+    },
+    {
+      "id": "caixoes_tipos",
+      "tags": ["caixão", "caixao", "urna", "ataúde", "ataude", "esquife", "tipo", "modelo", "madeira", "personalizado", "cor", "tamanho", "catálogo", "catalogo", "opções de urna"],
+      "pergunta": "Quais tipos de caixões e urnas estão disponíveis?",
+      "resposta": "Trabalhamos com **7 linhas de urnas e caixões**, para atender diferentes necessidades e orçamentos:\n\n🪵 **Linha Serenidade (MDF laqueado branco)**\n• Acabamento simples, alças cromadas\n• Ideal para plano Bronze\n• Incluído no Plano Bronze\n\n🪵 **Linha Dignidade (MDF laqueado cinza)**\n• Acabamento premium, alças douradas\n• Opção econômica avulsa: R$ 1.200,00\n\n🌲 **Linha Tradição (Pinus nobre)**\n• Madeira maciça clara, verniz natural\n• Avulso: R$ 2.800,00 | Incluído no Plano Prata\n\n🌲 **Linha Requinte (Cedro natural)**\n• Madeira maciça nobre, acabamento acetinado\n• Avulso: R$ 4.500,00\n\n🌳 **Linha Eternidade (Mogno importado)**\n• Madeira maciça premium, bordas entalhadas\n• Avulso: R$ 7.200,00 | Incluído no Plano Premium\n\n✨ **Linha Celestial (Mogno + forro em veludo)**\n• Acabamento superior com interior em veludo bordô ou branco\n• Avulso: R$ 9.800,00\n\n🎨 **Linha Personalizada**\n• Gravação de nome, fotos em relevo, cor e tecido à escolha\n• A partir de R$ 12.000,00 | Disponível para todos os planos com acréscimo"
+    },
+    {
+      "id": "caixoes_valores",
+      "tags": ["valor caixão", "preço caixão", "quanto caixão", "quanto urna", "preço urna", "valor urna", "caixão mais barato", "caixão mais caro", "tabela caixão", "tabela urna"],
+      "pergunta": "Qual o valor dos caixões disponíveis?",
+      "resposta": "Confira nossa **tabela completa de urnas e caixões**:\n\n| Modelo | Material | Valor Avulso |\n|---|---|---|\n| Serenidade | MDF branco | Incluso plano Bronze |\n| Dignidade | MDF cinza | R$ 1.200,00 |\n| Tradição | Pinus nobre | R$ 2.800,00 |\n| Requinte | Cedro natural | R$ 4.500,00 |\n| Eternidade | Mogno importado | R$ 7.200,00 |\n| Celestial | Mogno + veludo | R$ 9.800,00 |\n| Personalizada | À escolha | a partir de R$ 12.000,00 |\n\nTodos acompanham **forro interno, travesseiro e lençol**. Temos modelos em tamanhos infantil, adulto padrão e adulto extra. Solicite catálogo completo pelo WhatsApp (11) 98765-4321."
+    },
+    {
+      "id": "cremacao_valores",
+      "tags": ["cremação valor", "cremação preço", "cremar valor", "quanto cremação", "cremação custo", "cinzas valor", "urna cinzas", "urna de cinzas"],
+      "pergunta": "Quais os valores do serviço de cremação?",
+      "resposta": "Oferecemos **3 pacotes de cremação**:\n\n🔥 **Cremação Simples — R$ 3.200,00**\n• Preparação e higienização\n• Caixão de cremação padrão\n• Processo de cremação certificado\n• Urna de cinzas básica incluída\n\n🕊️ **Cremação com Cerimônia — R$ 4.800,00**\n• Tudo da cremação simples\n• Sala de cerimônia por 4 horas\n• Urna de cinzas decorada\n• Assistência a 30 pessoas\n\n✨ **Cremação Premium — R$ 7.500,00**\n• Tudo da cremação com cerimônia\n• Sala VIP por 8 horas\n• Urna de cinzas premium (porcelana ou madeira nobre)\n• Serviço de streaming ao vivo para familiares distantes\n• Entrega das cinzas em domicílio\n\n🏺 **Urnas de cinzas avulsas** (para quem já possui o serviço):\n• Básica (alumínio): R$ 180,00\n• Decorada (cerâmica): R$ 380,00\n• Premium (porcelana pintada à mão): R$ 780,00\n• Nobre (madeira entalhada): R$ 1.200,00"
+    },
+    {
+      "id": "velorio_valores",
+      "tags": ["velório valor", "velorio preco", "sala velório preço", "sala velório valor", "quanto velório", "velório custo", "sala custo"],
+      "pergunta": "Quais os valores das salas de velório?",
+      "resposta": "Nossas **salas de velório** estão disponíveis em 3 categorias:\n\n🏠 **Sala Padrão**\n• Capacidade: até 40 pessoas\n• Climatização básica\n• Cadeiras e arranjo floral simples\n• **R$ 1.200,00** por período de 12 horas\n• **R$ 1.900,00** por período de 24 horas\n\n🌸 **Sala Conforto**\n• Capacidade: até 70 pessoas\n• Climatização completa\n• Arranjos florais elaborados e iluminação especial\n• Serviço de café e água para os presentes\n• **R$ 2.400,00** por período de 12 horas\n• **R$ 3.800,00** por período de 24 horas\n\n⭐ **Sala VIP**\n• Capacidade: até 120 pessoas\n• Ambiente exclusivo com decoração premium\n• Floricultura personalizada\n• Serviço de coffee break completo\n• Sistema de som ambiente e telão para homenagens\n• Streaming ao vivo incluso\n• **R$ 4.500,00** por período de 12 horas\n• **R$ 7.000,00** por período de 24 horas\n\nTodas as salas estão inclusas nos planos conforme a categoria contratada."
+    },
+    {
+      "id": "translado_valores",
+      "tags": ["translado valor", "traslado preço", "transporte valor", "transferência preço", "quanto translado", "custo translado"],
+      "pergunta": "Quais os valores do translado funerário?",
+      "resposta": "Nossos **serviços de translado** são realizados 24 horas por dia:\n\n🚐 **Translado Local (até 50 km)**\n• R$ 650,00\n• Veículo funerário + 2 auxiliares\n• Incluso no Plano Bronze\n\n🚌 **Translado Regional (51 a 300 km)**\n• R$ 1.800,00\n• Veículo adaptado + documentação regional\n• Incluso no Plano Prata\n\n✈️ **Translado Nacional (acima de 300 km)**\n• A partir de R$ 3.500,00 (rodoviário)\n• A partir de R$ 6.800,00 (aéreo)\n• Inclui toda documentação e acompanhamento\n• Incluso no Plano Premium\n\n🌍 **Translado Internacional**\n• Sob consulta — (11) 98765-4321\n• Serviço especializado com tratados consulares\n\n⚠️ Valores do translado nacional variam conforme distância e modal (rodoviário ou aéreo). Solicite orçamento."
+    },
+    {
+      "id": "fallback",
+      "tags": [],
+      "pergunta": "Pergunta não encontrada",
+      "resposta": "Não encontrei uma resposta específica para sua pergunta, mas ficarei feliz em te ajudar! 😊\n\nPosso te informar sobre:\n• **Nossos planos** (Bronze, Prata e Premium)\n• **Valores e preços** de serviços e caixões\n• **Horário de funcionamento** (24h)\n• **Serviços oferecidos** (translado, velório, cremação)\n• **Como nos contatar** (WhatsApp 24h)\n\nOu, se preferir, fale diretamente com um de nossos consultores: 📱 (11) 98765-4321"
+    }
+  ]
+}
