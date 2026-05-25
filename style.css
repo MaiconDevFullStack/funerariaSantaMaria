@@ -109,40 +109,45 @@
 
     /* Menu mobile drawer */
     .nav-mobile-menu {
+      /* oculto em desktop — a media query ≤900px o torna visível */
       display: none;
       position: fixed;
       top: 70px;
       left: 0; right: 0;
       background: rgba(245,242,237,0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--beige);
+      border-bottom: 2px solid var(--beige);
       z-index: 99;
-      /* oculto via clip + transform para não cortar conteúdo */
-      clip-path: inset(0 0 100% 0);
-      transform: translateY(-8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: clip-path 0.32s ease, transform 0.32s ease, opacity 0.28s ease;
-      padding: 16px 0 24px;
+      padding: 12px 0 24px;
+      /* sem max-height, sem clip-path, sem overflow hidden */
     }
+    /* estado fechado no mobile */
+    .nav-mobile-menu {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    /* estado aberto */
     .nav-mobile-menu.open {
-      clip-path: inset(0 0 -20px 0);
-      transform: translateY(0);
+      visibility: visible;
       opacity: 1;
+      transform: translateY(0);
       pointer-events: all;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
     }
     .nav-mobile-menu ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0;
       padding: 0;
       margin: 0;
     }
     .nav-mobile-menu ul li a {
       display: block;
-      padding: 14px 28px;
-      font-size: 0.9rem;
+      padding: 15px 28px;
+      font-size: 0.92rem;
       letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--brown);
@@ -150,17 +155,19 @@
       border-bottom: 1px solid var(--beige);
       transition: background 0.2s, color 0.2s;
     }
-    .nav-mobile-menu ul li a:hover { background: var(--beige); color: var(--dark); }
+    .nav-mobile-menu ul li a:hover,
+    .nav-mobile-menu ul li a:active { background: var(--beige); color: var(--dark); }
     .nav-mobile-menu .nav-cta-mobile {
       display: block;
-      margin: 16px 28px 0;
+      margin: 16px 24px 4px;
       text-align: center;
       background: var(--brown);
       color: var(--white);
-      padding: 13px 20px;
+      padding: 14px 20px;
       border-radius: 40px;
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
+      font-weight: 700;
       letter-spacing: 0.06em;
       transition: background 0.25s;
     }
