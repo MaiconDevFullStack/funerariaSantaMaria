@@ -34,17 +34,8 @@
     </button>
   </nav>
 
-  <!-- OVERLAY DO DRAWER -->
-  <div id="nav-drawer-overlay" class="nav-drawer-overlay"></div>
-
-  <!-- MENU MOBILE DRAWER -->
+  <!-- MENU MOBILE -->
   <nav class="nav-mobile-menu" id="nav-mobile-menu" aria-label="Menu mobile">
-    <div class="nav-drawer-header">
-      <span>Funerária Santa Maria</span>
-      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Fechar menu">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
     <ul>
       <li><a href="#carrossel" class="nav-mob-link">Nossa Mensagem</a></li>
       <li><a href="#planos" class="nav-mob-link">Planos</a></li>
@@ -874,41 +865,21 @@
   </script>
 
   <script>
-    /* ── Hamburguer / Drawer lateral ── */
-    const hamburger    = document.getElementById('nav-hamburger');
-    const mobileMenu   = document.getElementById('nav-mobile-menu');
-    const drawerOverlay = document.getElementById('nav-drawer-overlay');
-    const drawerClose  = document.getElementById('nav-drawer-close');
-
-    function openDrawer() {
-      mobileMenu.classList.add('open');
-      drawerOverlay.classList.add('open');
-      hamburger.classList.add('open');
-      hamburger.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-      mobileMenu.classList.remove('open');
-      drawerOverlay.classList.remove('open');
+    /* ── Hamburguer ── */
+    const hamburger  = document.getElementById('nav-hamburger');
+    const mobileMenu = document.getElementById('nav-mobile-menu');
+    function closeMobileMenu() {
       hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
     }
-
     hamburger.addEventListener('click', () => {
-      mobileMenu.classList.contains('open') ? closeDrawer() : openDrawer();
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
     });
-
-    drawerClose.addEventListener('click', closeDrawer);
-    drawerOverlay.addEventListener('click', closeDrawer);
-
     document.querySelectorAll('.nav-mob-link').forEach(link => {
-      link.addEventListener('click', closeDrawer);
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeDrawer();
+      link.addEventListener('click', closeMobileMenu);
     });
   </script>
 
