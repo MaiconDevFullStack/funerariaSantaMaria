@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TESTE — Menu Drawer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #f5f2ed; }
+
+    /* ── NAVBAR ── */
+    nav.main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(245,242,237,0.97);
+      border-bottom: 1px solid #eae6df;
+      z-index: 300;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: #0a1e35;
+      font-size: 1rem; font-weight: bold;
+    }
+    .nav-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .nav-links a { color: #133655; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; }
+
+    /* hamburger — oculto no desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: #0a1e35; border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── OVERLAY ── */
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(5,14,26,0.5);
+      z-index: 398;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* ── DRAWER ─────────────────────────────────────────
+       Estratégia:
+       - Desktop: display:none  → completamente removido
+       - Mobile (≤900px): sempre display:flex, mas
+         transform:translateX(100%) o mantém fora da tela
+       - .open → transform:translateX(0) desliza para dentro
+    ──────────────────────────────────────────────────── */
+    .nav-drawer {
+      display: none; /* Desktop: oculto */
+    }
+
+    @media (max-width: 900px) {
+      nav.main-nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* DRAWER: sempre renderizado no mobile */
+      .nav-drawer {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; right: 0; bottom: 0;
+        width: min(300px, 82vw);
+        background: #0a1e35;
+        z-index: 399;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -6px 0 32px rgba(5,14,26,0.5);
+      }
+      .nav-drawer.open {
+        transform: translateX(0);
+      }
+    }
+
+    /* Conteúdo do drawer (estilizado independente do breakpoint) */
+    .nav-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      min-height: 70px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+    .nav-drawer-header span {
+      font-size: 0.95rem;
+      color: rgba(210,228,244,0.8);
+      letter-spacing: 0.03em;
+    }
+    .nav-drawer-close {
+      background: none; border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.2rem; cursor: pointer;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-drawer-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .nav-drawer ul {
+      list-style: none;
+      flex: 1;
+      padding: 8px 0;
+      margin: 0;
+    }
+    .nav-drawer ul li a {
+      display: block;
+      padding: 16px 24px;
+      font-size: 0.88rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(210,228,244,0.88);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-drawer ul li:last-child a { border-bottom: none; }
+    .nav-drawer ul li a:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+    .nav-drawer .drawer-cta {
+      display: block;
+      margin: 12px 20px 24px;
+      text-align: center;
+      background: #4a7aaa;
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: background 0.22s;
+    }
+    .nav-drawer .drawer-cta:hover { background: #3a6090; }
+
+    /* conteúdo de página para teste */
+    .page { padding: 100px 24px 48px; max-width: 800px; margin: 0 auto; }
+    .page h1 { font-size: 2rem; margin-bottom: 16px; color: #0a1e35; }
+    .page p { margin-bottom: 12px; color: #333; line-height: 1.7; }
+
+    /* resultado dos testes */
+    #test-results {
+      position: fixed; bottom: 16px; left: 16px; right: 16px;
+      background: #0a1e35; color: #fff;
+      border-radius: 12px; padding: 16px 20px;
+      font-size: 0.8rem; max-height: 200px; overflow-y: auto;
+      z-index: 9999;
+    }
+    #test-results h4 { margin-bottom: 8px; font-size: 0.9rem; }
+    .test-pass { color: #4caf50; }
+    .test-fail { color: #f44336; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="main-nav">
+    <a href="#" class="nav-logo">⊕ Funerária Santa Maria</a>
+    <ul class="nav-links">
+      <li><a href="#">Nossa Mensagem</a></li>
+      <li><a href="#">Planos</a></li>
+      <li><a href="#">Produtos</a></li>
+      <li><a href="#">Sobre Nós</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- OVERLAY -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <!-- DRAWER -->
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu mobile">
+    <div class="nav-drawer-header">
+      <span>Funerária Santa Maria</span>
+      <button class="nav-drawer-close" id="drawer-close" aria-label="Fechar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <ul>
+      <li><a href="#" class="drawer-link">Nossa Mensagem</a></li>
+      <li><a href="#" class="drawer-link">Planos</a></li>
+      <li><a href="#" class="drawer-link">Produtos &amp; Serviços</a></li>
+      <li><a href="#" class="drawer-link">Sobre Nós</a></li>
+    </ul>
+    <a href="#" class="drawer-cta drawer-link">Fale Conosco</a>
+  </nav>
+
+  <!-- CONTEÚDO DE TESTE -->
+  <div class="page">
+    <h1>Página de teste — Menu Drawer</h1>
+    <p>Reduza a largura da janela abaixo de 900px para ver o botão hamburguer. Clique nele para abrir o drawer lateral.</p>
+    <p>Testes automatizados são executados ao carregar a página e exibidos no painel abaixo.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor arcu nec eros consectetur, vel laoreet eros congue.</p>
+  </div>
+
+  <!-- PAINEL DE TESTES -->
+  <div id="test-results"><h4>⏳ Executando testes…</h4></div>
+
+  <script>
+    /* ── Lógica do Drawer ── */
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer    = document.getElementById('nav-drawer');
+    const overlay   = document.getElementById('nav-overlay');
+    const closeBtn  = document.getElementById('drawer-close');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () =>
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer()
+    );
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', closeDrawer));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    /* ── TESTES AUTOMATIZADOS ── */
+    const results = [];
+    function test(name, fn) {
+      try {
+        const ok = fn();
+        results.push({ name, ok, msg: ok ? 'OK' : 'FALHOU' });
+      } catch(e) {
+        results.push({ name, ok: false, msg: e.message });
+      }
+    }
+
+    // T1 — Drawer existe no DOM
+    test('Drawer existe no DOM', () => !!document.getElementById('nav-drawer'));
+
+    // T2 — Overlay existe
+    test('Overlay existe no DOM', () => !!document.getElementById('nav-overlay'));
+
+    // T3 — Hamburger existe
+    test('Botão hamburger existe', () => !!document.getElementById('nav-hamburger'));
+
+    // T4 — Botão fechar dentro do drawer
+    test('Botão fechar está dentro do drawer', () =>
+      drawer.contains(document.getElementById('drawer-close'))
+    );
+
+    // T5 — Drawer possui 4 links de navegação
+    test('Drawer tem 4 links de navegação', () =>
+      drawer.querySelectorAll('ul li a').length === 4
+    );
+
+    // T6 — Drawer tem botão CTA
+    test('Drawer tem botão CTA "Fale Conosco"', () =>
+      !!drawer.querySelector('.drawer-cta')
+    );
+
+    // T7 — Drawer NÃO tem classe open no início
+    test('Drawer começa fechado (sem .open)', () =>
+      !drawer.classList.contains('open')
+    );
+
+    // T8 — openDrawer adiciona .open ao drawer
+    test('openDrawer() adiciona .open ao drawer', () => {
+      openDrawer();
+      const ok = drawer.classList.contains('open');
+      closeDrawer();
+      return ok;
+    });
+
+    // T9 — openDrawer adiciona .open ao overlay
+    test('openDrawer() adiciona .open ao overlay', () => {
+      openDrawer();
+      const ok = overlay.classList.contains('open');
+      closeDrawer();
+      return ok;
+    });
+
+    // T10 — closeDrawer remove .open do drawer
+    test('closeDrawer() remove .open do drawer', () => {
+      openDrawer();
+      closeDrawer();
+      return !drawer.classList.contains('open');
+    });
+
+    // T11 — closeDrawer restaura overflow do body
+    test('closeDrawer() restaura overflow do body', () => {
+      openDrawer();
+      closeDrawer();
+      return document.body.style.overflow === '';
+    });
+
+    // T12 — aria-expanded é atualizado corretamente
+    test('aria-expanded atualizado ao abrir/fechar', () => {
+      openDrawer();
+      const wasTrue = hamburger.getAttribute('aria-expanded') === 'true';
+      closeDrawer();
+      const wasFalse = hamburger.getAttribute('aria-expanded') === 'false';
+      return wasTrue && wasFalse;
+    });
+
+    // T13 — Clicar num link fecha o drawer
+    test('Clicar em link fecha o drawer', () => {
+      openDrawer();
+      drawer.querySelector('.drawer-link').click();
+      return !drawer.classList.contains('open');
+    });
+
+    // T14 — Tecla Escape fecha o drawer
+    test('Tecla Escape fecha o drawer', () => {
+      openDrawer();
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      return !drawer.classList.contains('open');
+    });
+
+    // T15 — Clicar no overlay fecha o drawer
+    test('Clicar no overlay fecha o drawer', () => {
+      openDrawer();
+      overlay.click();
+      return !drawer.classList.contains('open');
+    });
+
+    // Exibir resultados
+    const panel = document.getElementById('test-results');
+    const pass = results.filter(r => r.ok).length;
+    const fail = results.filter(r => !r.ok).length;
+    panel.innerHTML = `<h4>${pass === results.length ? '✅' : '⚠️'} Testes: ${pass}/${results.length} passaram</h4>` +
+      results.map(r =>
+        `<div class="${r.ok ? 'test-pass' : 'test-fail'}">${r.ok ? '✓' : '✗'} ${r.name}</div>`
+      ).join('');
+  </script>
+</body>
+</html>
