@@ -116,15 +116,11 @@
       background: rgba(245,242,237,0.98);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--beige);
-      z-index: 99;
-      padding: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s;
+      z-index: 199;
+      padding: 16px 0 20px;
     }
     .nav-mobile-menu.open {
-      max-height: 600px;
-      padding: 16px 0 20px;
+      display: block;
     }
     .nav-mobile-menu ul {
       list-style: none;
@@ -953,7 +949,6 @@
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-mobile-menu { display: block; }
       .nav-logo-img { width: 54px; height: 54px; }
       .slide { flex: 0 0 calc(80vw); }
       .plan-layout { grid-template-columns: 1fr; gap: 32px; }
