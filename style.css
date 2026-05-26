@@ -113,9 +113,8 @@
       position: fixed;
       top: 70px;
       left: 0; right: 0;
-      background: rgba(245,242,237,0.98);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--beige);
+      background: var(--brown);
+      border-bottom: 2px solid var(--dark);
       z-index: 199;
       padding: 16px 0 20px;
     }
@@ -136,27 +135,28 @@
       font-size: 0.9rem;
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--brown);
+      color: var(--cream);
       text-decoration: none;
-      border-bottom: 1px solid var(--beige);
+      border-bottom: 1px solid rgba(245,242,237,0.15);
       transition: background 0.2s, color 0.2s;
     }
     .nav-mobile-menu ul li:last-child a { border-bottom: none; }
-    .nav-mobile-menu ul li a:hover { background: var(--beige); color: var(--dark); }
+    .nav-mobile-menu ul li a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
     .nav-mobile-menu .nav-cta-mobile {
       display: block;
       margin: 14px 28px 0;
       text-align: center;
-      background: var(--brown);
-      color: var(--white);
+      background: var(--cream);
+      color: var(--dark);
       padding: 12px 20px;
       border-radius: 40px;
       text-decoration: none;
       font-size: 0.88rem;
+      font-weight: 700;
       letter-spacing: 0.06em;
       transition: background 0.25s;
     }
-    .nav-mobile-menu .nav-cta-mobile:hover { background: var(--dark); }
+    .nav-mobile-menu .nav-cta-mobile:hover { background: var(--white); }
 
     /* ─── HERO ─── */
     .hero {
