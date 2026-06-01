@@ -1,10 +1,10 @@
 /**
  * Netlify Function — /api/chat
- * RAG + Grok (xAI) para conversas naturais com base estrita na KB.
- * Fallback automático para RAG puro se GROK_API_KEY não estiver configurada.
+ * RAG + Groq (llama-3.3-70b) para conversas naturais com base estrita na KB.
+ * Fallback automático para RAG puro se GROQ_API_KEY não estiver configurada.
  *
  * Variável de ambiente necessária no painel Netlify:
- *   GROK_API_KEY=xai-...
+ *   GROQ_API_KEY=gsk_...
  */
 
 const fs   = require('fs');
@@ -79,8 +79,8 @@ function buildContext(results, topN = 5) {
     .join('\n\n---\n\n');
 }
 
-// ── Chama a API do Grok (xAI — compatível com OpenAI) ────────────────────────
-async function callGrok(userMessage, context, apiKey) {
+// ── Chama a API da Groq ──────────────────────────────────────────────────────
+async function callGroq(userMessage, context, apiKey) {
   const systemPrompt = `Você é o assistente virtual da Funerária Santa Maria, uma empresa de serviços funerários que atua 24 horas por dia com amor, respeito e dignidade.
 
 REGRAS OBRIGATÓRIAS — siga todas sem exceção:
@@ -96,14 +96,14 @@ REGRAS OBRIGATÓRIAS — siga todas sem exceção:
 BASE DE CONHECIMENTO:
 ${context}`;
 
-  const response = await fetch('https://api.x.ai/v1/chat/completions', {
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type':  'application/json',
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model:       'grok-3-mini',
+      model:       'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user',   content: userMessage  },
@@ -169,7 +169,7 @@ exports.handler = async (event) => {
   const results      = ragSearch(message, kb);
   const best         = results[0];
   const THRESHOLD    = 3;
-  const GROK_API_KEY = process.env.GROK_API_KEY;
+  const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
   // Nenhuma entrada relevante → retorna fallback direto (sem chamar LLM)
   if (!best || best.score < THRESHOLD) {
@@ -187,11 +187,11 @@ exports.handler = async (event) => {
     };
   }
 
-  // Encontrou contexto relevante — tenta Grok se API key disponível
-  if (GROK_API_KEY) {
+  // Encontrou contexto relevante — tenta Groq se API key disponível
+  if (GROQ_API_KEY) {
     try {
       const context      = buildContext(results);
-      const grokResponse = await callGrok(message, context, GROK_API_KEY);
+      const grokResponse = await callGroq(message, context, GROQ_API_KEY);
 
       return {
         statusCode: 200,
@@ -206,7 +206,7 @@ exports.handler = async (event) => {
       };
     } catch (err) {
       // Grok falhou — log e fallback para RAG puro
-      console.error('[chat] Grok API falhou, usando RAG puro:', err.message);
+      console.error('[chat] Groq API falhou, usando RAG puro:', err.message);
     }
   }
 
