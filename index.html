@@ -34,8 +34,15 @@
     </button>
   </nav>
 
-  <!-- MENU MOBILE -->
+  <!-- OVERLAY MENU MOBILE -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <!-- MENU MOBILE (DRAWER LATERAL) -->
   <nav class="nav-mobile-menu" id="nav-mobile-menu" aria-label="Menu mobile">
+    <div class="nav-mobile-menu-header">
+      <span>Menu</span>
+      <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Fechar menu">&#x2715;</button>
+    </div>
     <ul>
       <li><a href="#carrossel" class="nav-mob-link">Nossa Mensagem</a></li>
       <li><a href="#planos" class="nav-mob-link">Planos</a></li>
@@ -865,21 +872,36 @@
   </script>
 
   <script>
-    /* ── Hamburguer ── */
-    const hamburger  = document.getElementById('nav-hamburger');
-    const mobileMenu = document.getElementById('nav-mobile-menu');
+    /* ── Hamburguer / Drawer ── */
+    const hamburger   = document.getElementById('nav-hamburger');
+    const mobileMenu  = document.getElementById('nav-mobile-menu');
+    const navOverlay  = document.getElementById('nav-overlay');
+    const mobileClose = document.getElementById('nav-mobile-close');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      navOverlay.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
     function closeMobileMenu() {
-      hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
+      navOverlay.classList.remove('open');
+      hamburger.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
     hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
     });
+    mobileClose.addEventListener('click', closeMobileMenu);
+    navOverlay.addEventListener('click', closeMobileMenu);
     document.querySelectorAll('.nav-mob-link').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMobileMenu();
     });
   </script>
 
