@@ -31,7 +31,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 48px;
-      height: 70px;
+      height: 88px;
       overflow: visible;
       background: rgba(245,242,237,0.95);
       backdrop-filter: blur(10px);
@@ -40,16 +40,16 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
-      height: 70px;
-      overflow: hidden;
+      height: 88px;
+      overflow: visible;
     }
     .nav-logo-img {
       display: inline-block;
       flex-shrink: 0;
-      width: 62px;
-      height: 62px;
+      width: 80px;
+      height: 80px;
       background: url('../fogo.png') no-repeat center center / contain;
     }
     .nav-logo span:last-child {
@@ -1016,10 +1016,11 @@
     }
 
     @media (max-width: 900px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 20px; height: 72px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-logo-img { width: 54px; height: 54px; }
+      .nav-logo { height: 72px; }
+      .nav-logo-img { width: 64px; height: 64px; }
       .slide { flex: 0 0 calc(80vw); }
       .plan-layout { grid-template-columns: 1fr; gap: 32px; }
       .plan-img-wrap img { height: 320px; }
@@ -1032,11 +1033,12 @@
     }
 
     @media (max-width: 600px) {
-      nav { padding: 0 16px; }
+      nav { padding: 0 16px; height: 66px; }
       .hero h1 { font-size: 2rem; }
       .hero { padding: 100px 16px 60px; }
       .hero-logo-center { width: min(280px, 78vw); }
-      .nav-logo-img { width: 46px; height: 46px; }
+      .nav-logo { height: 66px; }
+      .nav-logo-img { width: 56px; height: 56px; }
       .nav-logo span:last-child { font-size: 0.9rem; }
       .slide { flex: 0 0 88vw; min-height: 380px; padding: 32px 22px; }
       section { padding: 64px 16px; }
