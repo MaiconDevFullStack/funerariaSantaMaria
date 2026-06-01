@@ -12,12 +12,19 @@ const path = require('path');
 
 // ── Carrega a KB ──────────────────────────────────────────────────────────────
 function loadKB() {
-  const kbPath = path.join(__dirname, '../../kb.json');
-  try {
-    return JSON.parse(fs.readFileSync(kbPath, 'utf-8'));
-  } catch {
-    return { entradas: [] };
+  // Em produção (Netlify), kb.json é bundled junto com a function
+  // Em desenvolvimento local, sobe dois níveis até a raiz do projeto
+  const candidates = [
+    path.join(__dirname, 'kb.json'),        // bundled (produção)
+    path.join(__dirname, '../../kb.json'),  // local dev
+  ];
+  for (const p of candidates) {
+    try {
+      return JSON.parse(fs.readFileSync(p, 'utf-8'));
+    } catch { /* tenta próximo */ }
   }
+  console.error('[chat] kb.json não encontrado em nenhum caminho');
+  return { entradas: [] };
 }
 
 // ── Normalização ──────────────────────────────────────────────────────────────
@@ -174,12 +181,15 @@ exports.handler = async (event) => {
   // Nenhuma entrada relevante → retorna fallback direto (sem chamar LLM)
   if (!best || best.score < THRESHOLD) {
     const fallback = kb.entradas.find(e => e.id === 'fallback');
+    const respostaFallback = fallback
+      ? mdToHtml(fallback.resposta)
+      : 'Não consegui encontrar uma resposta. Por favor, entre em contato pelo WhatsApp <strong>(11) 98765-4321</strong>.';
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         id:        'fallback',
-        resposta:  mdToHtml(fallback.resposta),
+        resposta:  respostaFallback,
         score:     0,
         sessionId: sessionId || 'default',
         source:    'rag-fallback',
