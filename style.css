@@ -124,6 +124,7 @@
     }
 
     /* ─── MENU MOBILE (DRAWER LATERAL) ─── */
+    /* Oculto por padrão em qualquer largura; só aparece via .open em mobile */
     .nav-mobile-menu {
       position: fixed;
       top: 0;
@@ -133,7 +134,9 @@
       background: var(--brown);
       z-index: 199;
       transform: translateX(100%);
-      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+      visibility: hidden;
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1),
+                  visibility 0s linear 0.32s;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
@@ -141,6 +144,9 @@
     }
     .nav-mobile-menu.open {
       transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1),
+                  visibility 0s linear 0s;
     }
     .nav-mobile-menu-header {
       display: flex;
@@ -996,6 +1002,14 @@
     footer strong { color: #90b8d8; }
 
     /* ─── RESPONSIVO ─── */
+    /* Garante que drawer e overlay nunca apareçam em desktop */
+    @media (min-width: 901px) {
+      .nav-mobile-menu,
+      .nav-overlay {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 1024px) {
       .plans-grid { grid-template-columns: 1fr 1fr; }
       .plan-layout { gap: 40px; }
