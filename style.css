@@ -1016,11 +1016,11 @@
     }
 
     @media (max-width: 900px) {
-      nav { padding: 0 20px; height: 72px; }
+      nav { padding: 0 20px; height: 84px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-logo { height: 72px; }
-      .nav-logo-img { width: 64px; height: 64px; }
+      .nav-logo { height: 84px; }
+      .nav-logo-img { width: 76px; height: 76px; }
       .slide { flex: 0 0 calc(80vw); }
       .plan-layout { grid-template-columns: 1fr; gap: 32px; }
       .plan-img-wrap img { height: 320px; }
@@ -1033,12 +1033,12 @@
     }
 
     @media (max-width: 600px) {
-      nav { padding: 0 16px; height: 66px; }
+      nav { padding: 0 16px; height: 78px; }
       .hero h1 { font-size: 2rem; }
       .hero { padding: 100px 16px 60px; }
       .hero-logo-center { width: min(280px, 78vw); }
-      .nav-logo { height: 66px; }
-      .nav-logo-img { width: 56px; height: 56px; }
+      .nav-logo { height: 78px; }
+      .nav-logo-img { width: 70px; height: 70px; }
       .nav-logo span:last-child { font-size: 0.9rem; }
       .slide { flex: 0 0 88vw; min-height: 380px; padding: 32px 22px; }
       section { padding: 64px 16px; }
