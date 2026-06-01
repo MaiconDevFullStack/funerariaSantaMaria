@@ -48,8 +48,8 @@
     .nav-logo-img {
       display: inline-block;
       flex-shrink: 0;
-      width:  100px;
-      height: 100px;
+      width:  200px;
+      height: 200px;
       background: url('../fogo.png') no-repeat center center / contain;
     }
     .nav-logo span:last-child {
