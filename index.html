@@ -792,6 +792,10 @@
       isOpen = !isOpen;
       widget.classList.toggle('open', isOpen);
       fab.classList.remove('has-unread');
+      /* Em mobile (bottom-sheet) esconde o FAB para não sobrepor o rodapé do chat */
+      if (window.innerWidth <= 600) {
+        fab.style.display = isOpen ? 'none' : '';
+      }
       if (isOpen) {
         input.focus();
         if (messages.children.length === 0) sendBotGreeting();
