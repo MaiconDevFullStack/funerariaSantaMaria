@@ -612,6 +612,52 @@
       margin-bottom: 28px;
     }
     .plan-premium .plan-desc { color: rgba(255,255,255,0.75); }
+    .plan-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 28px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: rgba(74,122,170,0.10);
+      border: 1.5px solid rgba(74,122,170,0.22);
+    }
+    .plan-premium .plan-price {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .plan-price i {
+      font-size: 1.25rem;
+      color: var(--brown);
+    }
+    .plan-premium .plan-price i { color: #90b8d8; }
+    .plan-price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .plan-premium .plan-price-amount { color: var(--white); }
+    .plan-price-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+    }
+    .plan-price-period {
+      font-size: 0.78rem;
+      color: #4a7aaa;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .plan-premium .plan-price-period { color: rgba(255,255,255,0.55); }
+    .plan-price-note {
+      font-size: 0.72rem;
+      color: #8a9aaa;
+    }
+    .plan-premium .plan-price-note { color: rgba(255,255,255,0.4); }
     .plan-tag-best {
       position: absolute;
       top: -14px;
