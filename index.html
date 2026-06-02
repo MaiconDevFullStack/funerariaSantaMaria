@@ -349,19 +349,43 @@
       <h2 class="section-title fade-in" style="text-align:center;">Cuidado que vai além das palavras</h2>
       <div class="divider fade-in" style="margin: 24px auto;"></div>
       <p class="section-sub fade-in" style="text-align:center; max-width:600px; margin:0 auto 36px;">Há décadas cuidando com dignidade e respeito de quem fica e de quem parte. Assista e conheça nossa história.</p>
-      <div class="video-wrapper fade-in">
-        <video
-          id="video-inst"
-          src="video-institucional.mp4"
-          poster="video-poster.jpg"
-          controls
-          muted
-          playsinline
-          preload="metadata"
-          aria-label="Vídeo Institucional — Funerária Santa Maria">
-          Seu navegador não suporta reprodução de vídeo.
-        </video>
+
+      <div class="video-scene fade-in">
+        <!-- frame decorativo -->
+        <div class="video-frame-deco" aria-hidden="true"></div>
+
+        <div class="video-wrapper">
+          <video
+            id="video-inst"
+            src="video-institucional.mp4"
+            poster="video-poster.jpg"
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            aria-label="Vídeo Institucional — Funerária Santa Maria">
+            Seu navegador não suporta reprodução de vídeo.
+          </video>
+
+          <!-- overlay play customizado -->
+          <div class="video-play-overlay" id="video-play-overlay" aria-hidden="true">
+            <button class="video-play-btn" id="video-play-btn" aria-label="Reproduzir vídeo">
+              <i class="bi bi-play-fill"></i>
+            </button>
+          </div>
+
+          <!-- hint de áudio mudo -->
+          <div class="video-mute-hint" id="video-mute-hint">
+            <i class="bi bi-volume-mute-fill"></i>
+            <span>Com áudio mudo &mdash; clique no ínone de som para ativar</span>
+          </div>
+        </div>
       </div>
+
+      <p class="video-caption fade-in">
+        <i class="bi bi-flower1"></i>
+        &ldquo;Cada despedida é única. Nossa missão é garantir que ela seja digna.&rdquo;
+      </p>
     </div>
   </section>
 
@@ -1020,13 +1044,52 @@
   <script>
     /* ─── AUTOPLAY VÍDEO AO ROLAR ─── */
     (function () {
-      const vid = document.getElementById('video-inst');
-      if (!vid) return;
+      const vid        = document.getElementById('video-inst');
+      const overlay    = document.getElementById('video-play-overlay');
+      const playBtn    = document.getElementById('video-play-btn');
+      const muteHint   = document.getElementById('video-mute-hint');
+      const wrapper    = vid ? vid.closest('.video-wrapper') : null;
+      if (!vid || !wrapper) return;
+
+      /* estado visual inicial */
+      wrapper.classList.add('is-paused');
+
+      function startPlay() {
+        vid.play().catch(function () {});
+      }
+
+      /* botão customizado de play */
+      if (playBtn) {
+        playBtn.addEventListener('click', function () {
+          startPlay();
+        });
+      }
+
+      /* esconde overlay quando o vídeo começa a tocar */
+      vid.addEventListener('play', function () {
+        wrapper.classList.remove('is-paused');
+        wrapper.classList.add('is-playing');
+        if (overlay) overlay.classList.add('hidden');
+      });
+
+      /* mostra overlay ao pausar manualmente */
+      vid.addEventListener('pause', function () {
+        wrapper.classList.remove('is-playing');
+        wrapper.classList.add('is-paused');
+        if (overlay) overlay.classList.remove('hidden');
+      });
+
+      /* esconde hint de áudio quando o usuário ativa o som */
+      vid.addEventListener('volumechange', function () {
+        if (!vid.muted && muteHint) muteHint.classList.add('hidden');
+      });
+
+      /* IntersectionObserver: autoplay ao rolar, pausa ao sair */
       const obs = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              vid.play().catch(function () {});
+              startPlay();
             } else {
               vid.pause();
             }
