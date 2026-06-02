@@ -351,9 +351,12 @@
       <p class="section-sub fade-in" style="text-align:center; max-width:600px; margin:0 auto 36px;">Há décadas cuidando com dignidade e respeito de quem fica e de quem parte. Assista e conheça nossa história.</p>
       <div class="video-wrapper fade-in">
         <video
+          id="video-inst"
           src="video-institucional.mp4"
           poster="video-poster.jpg"
           controls
+          muted
+          playsinline
           preload="metadata"
           aria-label="Vídeo Institucional — Funerária Santa Maria">
           Seu navegador não suporta reprodução de vídeo.
@@ -1012,6 +1015,27 @@
         });
       }
     });
+  </script>
+
+  <script>
+    /* ─── AUTOPLAY VÍDEO AO ROLAR ─── */
+    (function () {
+      const vid = document.getElementById('video-inst');
+      if (!vid) return;
+      const obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              vid.play().catch(function () {});
+            } else {
+              vid.pause();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      obs.observe(vid);
+    })();
   </script>
 </body>
 </html>
