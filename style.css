@@ -1212,6 +1212,33 @@
     }
     .video-play-btn .bi { line-height: 1; margin-left: 4px; }
 
+    /* ── botão de ativar som (autoplay mudo) ── */
+    .video-unmute-btn {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10,30,53,0.78);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 0.78rem;
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 3;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.3s ease, background 0.2s;
+      pointer-events: auto;
+    }
+    .video-unmute-btn:hover { background: rgba(10,30,53,0.95); }
+    .video-unmute-btn.hidden { opacity: 0; pointer-events: none; }
+    .video-unmute-btn .bi { font-size: 0.9rem; }
+
     /* ── legenda citação ── */
     .video-caption {
       text-align: center;
@@ -1245,6 +1272,7 @@
       .video-wrapper video { border-radius: 16px; }
       .video-play-overlay { border-radius: 16px; }
       .video-play-btn { width: 60px; height: 60px; font-size: 1.6rem; }
+      .video-unmute-btn { font-size: 0.72rem; padding: 6px 12px; bottom: 52px; }
       .video-caption { font-size: 0.9rem; }
     }
     @media (max-width: 380px) {

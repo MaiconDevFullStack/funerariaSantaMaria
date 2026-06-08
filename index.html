@@ -372,6 +372,12 @@
             </button>
           </div>
 
+          <!-- botão de ativar som (aparece quando tocando mudo) -->
+          <button class="video-unmute-btn hidden" id="video-unmute-btn" aria-label="Ativar som">
+            <i class="bi bi-volume-mute-fill"></i>
+            <span>Toque para ativar o som</span>
+          </button>
+
         </div>
       </div>
 
@@ -1010,62 +1016,92 @@
   <script>
     /* ─── AUTOPLAY VÍDEO AO ROLAR ─── */
     (function () {
-      const vid        = document.getElementById('video-inst');
-      const overlay    = document.getElementById('video-play-overlay');
-      const playBtn    = document.getElementById('video-play-btn');
-      const wrapper    = vid ? vid.closest('.video-wrapper') : null;
+      var vid        = document.getElementById('video-inst');
+      var overlay    = document.getElementById('video-play-overlay');
+      var playBtn    = document.getElementById('video-play-btn');
+      var unmuteBtn  = document.getElementById('video-unmute-btn');
+      var wrapper    = vid ? vid.closest('.video-wrapper') : null;
       if (!vid || !wrapper) return;
 
-      /* flag: usuário pausou manualmente → não reiniciar no scroll */
-      var userPaused = false;
-      /* flag: pausa disparada pelo observer → não marcar como manual */
-      var scrollPausing = false;
+      /* flags de controle */
+      var userPaused   = false;   /* usuário pausou manualmente */
+      var scrollPausing = false;  /* pausa disparada pelo observer */
 
       /* estado visual inicial */
       wrapper.classList.add('is-paused');
 
-      /* tenta reproduzir com áudio; se o browser bloquear, toca mudo */
-      function startPlay() {
+      /* ── mostra/esconde botão de som ── */
+      function syncUnmuteBtn() {
+        if (vid.muted && !vid.paused) {
+          unmuteBtn.classList.remove('hidden');
+        } else {
+          unmuteBtn.classList.add('hidden');
+        }
+      }
+
+      /* ── autoplay mudo (scroll): única forma garantida em mobile ── */
+      function autoplayMuted() {
         userPaused = false;
-        var promise = vid.play();
-        if (promise !== undefined) {
-          promise.catch(function () {
+        vid.muted = true;
+        var p = vid.play();
+        if (p !== undefined) p.catch(function () {});
+      }
+
+      /* ── play com áudio (interação direta do usuário) ── */
+      function playWithAudio() {
+        userPaused = false;
+        vid.muted = false;
+        var p = vid.play();
+        if (p !== undefined) {
+          p.catch(function () {
+            /* browser ainda bloqueou: retorna mudo */
             vid.muted = true;
             vid.play().catch(function () {});
           });
         }
       }
 
-      /* botão customizado de play */
+      /* ── botão play manual ── */
       if (playBtn) {
         playBtn.addEventListener('click', function () {
-          startPlay();
+          playWithAudio();
         });
       }
 
-      /* esconde overlay quando o vídeo começa a tocar */
+      /* ── botão de ativar som ── */
+      if (unmuteBtn) {
+        unmuteBtn.addEventListener('click', function () {
+          vid.muted = false;
+          syncUnmuteBtn();
+        });
+      }
+
+      /* ── eventos do vídeo ── */
       vid.addEventListener('play', function () {
         wrapper.classList.remove('is-paused');
         wrapper.classList.add('is-playing');
         if (overlay) overlay.classList.add('hidden');
+        syncUnmuteBtn();
       });
 
-      /* mostra overlay ao pausar; distingue pausa manual de pausa por scroll */
       vid.addEventListener('pause', function () {
         wrapper.classList.remove('is-playing');
         wrapper.classList.add('is-paused');
         if (overlay) overlay.classList.remove('hidden');
-        if (!scrollPausing) {
-          userPaused = true;   /* pausou pelos controles do player */
-        }
+        if (unmuteBtn) unmuteBtn.classList.add('hidden');
+        if (!scrollPausing) userPaused = true;
       });
 
-      /* IntersectionObserver: play ao rolar para dentro, pausa ao sair */
+      vid.addEventListener('volumechange', function () {
+        syncUnmuteBtn();
+      });
+
+      /* ── IntersectionObserver: autoplay mudo ao rolar, pausa ao sair ── */
       var obs = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              if (!userPaused) startPlay();   /* respeita pausa intencional */
+              if (!userPaused) autoplayMuted();
             } else {
               if (!vid.paused) {
                 scrollPausing = true;
@@ -1075,7 +1111,7 @@
             }
           });
         },
-        { threshold: 0.45 }
+        { threshold: 0.4 }
       );
       obs.observe(vid);
     })();
