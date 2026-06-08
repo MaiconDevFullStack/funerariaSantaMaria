@@ -736,8 +736,6 @@
       <div class="fsm-chat-messages" id="fsm-messages"></div>
     </div>
 
-    <div class="fsm-quick-replies" id="fsm-quick"></div>
-
     <div class="fsm-chat-footer">
       <input
         type="text"
@@ -816,16 +814,6 @@
     const messages = document.getElementById('fsm-messages');
     const input    = document.getElementById('fsm-input');
     const sendBtn  = document.getElementById('fsm-send');
-    const quickEl  = document.getElementById('fsm-quick');
-
-    const QUICK_OPTIONS = [
-      'Ver os planos',
-      'Tabela de preços',
-      'Tipos de caixões',
-      'Cremação — valores',
-      'Horário de atendimento',
-      'Entrar em contato',
-    ];
 
     let isOpen = false;
 
@@ -864,7 +852,6 @@
 
     /* ── Saudão inicial ── */
     function sendBotGreeting() {
-      renderQuickReplies();
       appendMsg(
         'Olá! Seja bem-vindo à <strong>Funerária Santa Maria</strong>. ' +
         'Estou aqui para te ajudar com dúvidas sobre nossos serviços e planos. Como posso ajudar?',
@@ -872,24 +859,11 @@
       );
     }
 
-    /* ── Respostas rápidas ── */
-    function renderQuickReplies() {
-      quickEl.innerHTML = '';
-      QUICK_OPTIONS.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'fsm-quick-btn';
-        btn.textContent = opt;
-        btn.addEventListener('click', () => { sendMessage(opt); });
-        quickEl.appendChild(btn);
-      });
-    }
-
     /* ── Envia mensagem ── */
     async function sendMessage(text) {
       text = (text || input.value).trim();
       if (!text) return;
 
-      quickEl.innerHTML = '';
       input.value = '';
       sendBtn.disabled = true;
 
@@ -921,7 +895,6 @@
         console.warn('[FSM Chat] Erro ao chamar API:', err.message);
       }
 
-      renderQuickReplies();
       sendBtn.disabled = false;
       input.focus();
 

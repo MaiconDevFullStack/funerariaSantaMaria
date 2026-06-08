@@ -1426,30 +1426,6 @@
       font-size: 0.82rem;
     }
 
-    .fsm-quick-replies {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 8px 16px 0;
-      background: #f8f6f3;
-    }
-    .fsm-quick-btn {
-      background: #fff;
-      border: 1px solid #c8d8e8;
-      color: var(--brown);
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .fsm-quick-btn:hover {
-      background: var(--brown);
-      color: #fff;
-      border-color: var(--brown);
-    }
-
     .fsm-chat-footer {
       display: flex;
       align-items: center;
@@ -1563,24 +1539,6 @@
         font-size: 0.9rem;
         padding: 10px 13px;
         max-width: 90%;
-      }
-
-      /* Botões de resposta rápida com scroll horizontal */
-      .fsm-quick-replies {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 8px 12px 4px;
-        gap: 6px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .fsm-quick-replies::-webkit-scrollbar { display: none; }
-      .fsm-quick-btn {
-        font-size: 0.8rem;
-        padding: 6px 14px;
-        flex-shrink: 0;
-        touch-action: manipulation;
       }
 
       /* Footer com input e botão com boa área de toque */
