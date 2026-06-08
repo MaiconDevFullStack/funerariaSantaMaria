@@ -1133,17 +1133,17 @@
     /* cena: posiciona o frame deco relativo ao wrapper */
     .video-scene {
       position: relative;
-      max-width: 880px;
+      max-width: 380px;   /* vídeo vertical (9:16) */
       margin: 0 auto;
     }
 
     /* quadro decorativo deslocado — cria profundidade */
     .video-frame-deco {
       position: absolute;
-      inset: 18px -18px -18px 18px;
+      inset: 14px -14px -14px 14px;
       border: 2px solid var(--brown);
       opacity: 0.18;
-      border-radius: 24px;
+      border-radius: 28px;
       pointer-events: none;
       z-index: 0;
     }
@@ -1151,7 +1151,7 @@
     .video-wrapper {
       position: relative;
       width: 100%;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
       box-shadow:
         0 8px 32px rgba(10,30,53,0.18),
@@ -1163,10 +1163,10 @@
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: contain;
+      aspect-ratio: 9 / 16;  /* vídeo vertical */
+      object-fit: cover;
       background: #000;
-      border-radius: 20px;
+      border-radius: 24px;
       transition: filter 0.5s ease;
     }
     /* leve desfoque enquanto pausado — cria expectativa */
@@ -1181,7 +1181,7 @@
       align-items: center;
       justify-content: center;
       background: rgba(10,30,53,0.28);
-      border-radius: 20px;
+      border-radius: 24px;
       transition: opacity 0.4s ease, visibility 0.4s ease;
       z-index: 2;
     }
@@ -1253,23 +1253,25 @@
 
     @media (max-width: 900px) {
       #video-institucional { padding: 60px 0 56px; }
-      .video-scene { max-width: 100%; }
-      .video-frame-deco { inset: 12px -12px -12px 12px; border-radius: 18px; }
-      .video-wrapper { border-radius: 14px; }
-      .video-wrapper video { border-radius: 14px; }
-      .video-play-overlay { border-radius: 14px; }
+      .video-scene { max-width: 340px; }
+      .video-frame-deco { inset: 10px -10px -10px 10px; border-radius: 22px; }
+      .video-wrapper { border-radius: 20px; }
+      .video-wrapper video { border-radius: 20px; }
+      .video-play-overlay { border-radius: 20px; }
     }
     @media (max-width: 600px) {
       #video-institucional { padding: 44px 0 40px; }
+      .video-scene { max-width: 88vw; }
       .video-frame-deco { display: none; }
-      .video-wrapper { border-radius: 10px; }
-      .video-wrapper video { border-radius: 10px; max-height: 56vw; }
-      .video-play-overlay { border-radius: 10px; }
+      .video-wrapper { border-radius: 16px; }
+      .video-wrapper video { border-radius: 16px; }
+      .video-play-overlay { border-radius: 16px; }
       .video-play-btn { width: 60px; height: 60px; font-size: 1.6rem; }
       .video-mute-hint { font-size: 0.7rem; bottom: 48px; }
       .video-caption { font-size: 0.9rem; }
     }
     @media (max-width: 380px) {
+      .video-scene { max-width: 94vw; }
       .video-play-btn { width: 48px; height: 48px; font-size: 1.3rem; }
       .video-mute-hint { font-size: 0.65rem; padding: 4px 10px; bottom: 40px; white-space: normal; text-align: center; max-width: 80%; }
     }
