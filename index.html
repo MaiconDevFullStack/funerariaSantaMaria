@@ -359,7 +359,6 @@
             id="video-inst"
             src="video.mp4"
             controls
-            muted
             playsinline
             preload="metadata"
             aria-label="Vídeo Institucional — Funerária Santa Maria">
@@ -373,11 +372,6 @@
             </button>
           </div>
 
-          <!-- hint de áudio mudo -->
-          <div class="video-mute-hint" id="video-mute-hint">
-            <i class="bi bi-volume-mute-fill"></i>
-            <span>Com áudio mudo &mdash; clique no ínone de som para ativar</span>
-          </div>
         </div>
       </div>
 
@@ -1046,7 +1040,6 @@
       const vid        = document.getElementById('video-inst');
       const overlay    = document.getElementById('video-play-overlay');
       const playBtn    = document.getElementById('video-play-btn');
-      const muteHint   = document.getElementById('video-mute-hint');
       const wrapper    = vid ? vid.closest('.video-wrapper') : null;
       if (!vid || !wrapper) return;
 
@@ -1076,11 +1069,6 @@
         wrapper.classList.remove('is-playing');
         wrapper.classList.add('is-paused');
         if (overlay) overlay.classList.remove('hidden');
-      });
-
-      /* esconde hint de áudio quando o usuário ativa o som */
-      vid.addEventListener('volumechange', function () {
-        if (!vid.muted && muteHint) muteHint.classList.add('hidden');
       });
 
       /* IntersectionObserver: autoplay ao rolar, pausa ao sair */
