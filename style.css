@@ -1163,6 +1163,9 @@
       display: block;
       width: 100%;
       height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #000;
       border-radius: 20px;
       transition: filter 0.5s ease;
     }
@@ -1260,11 +1263,15 @@
       #video-institucional { padding: 44px 0 40px; }
       .video-frame-deco { display: none; }
       .video-wrapper { border-radius: 10px; }
-      .video-wrapper video { border-radius: 10px; }
+      .video-wrapper video { border-radius: 10px; max-height: 56vw; }
       .video-play-overlay { border-radius: 10px; }
       .video-play-btn { width: 60px; height: 60px; font-size: 1.6rem; }
       .video-mute-hint { font-size: 0.7rem; bottom: 48px; }
       .video-caption { font-size: 0.9rem; }
+    }
+    @media (max-width: 380px) {
+      .video-play-btn { width: 48px; height: 48px; font-size: 1.3rem; }
+      .video-mute-hint { font-size: 0.65rem; padding: 4px 10px; bottom: 40px; white-space: normal; text-align: center; max-width: 80%; }
     }
 
     /* ─── CHAT FLUTUANTE ─── */
