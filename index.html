@@ -1043,11 +1043,24 @@
       const wrapper    = vid ? vid.closest('.video-wrapper') : null;
       if (!vid || !wrapper) return;
 
+      /* flag: usuário pausou manualmente → não reiniciar no scroll */
+      var userPaused = false;
+      /* flag: pausa disparada pelo observer → não marcar como manual */
+      var scrollPausing = false;
+
       /* estado visual inicial */
       wrapper.classList.add('is-paused');
 
+      /* tenta reproduzir com áudio; se o browser bloquear, toca mudo */
       function startPlay() {
-        vid.play().catch(function () {});
+        userPaused = false;
+        var promise = vid.play();
+        if (promise !== undefined) {
+          promise.catch(function () {
+            vid.muted = true;
+            vid.play().catch(function () {});
+          });
+        }
       }
 
       /* botão customizado de play */
@@ -1064,25 +1077,32 @@
         if (overlay) overlay.classList.add('hidden');
       });
 
-      /* mostra overlay ao pausar manualmente */
+      /* mostra overlay ao pausar; distingue pausa manual de pausa por scroll */
       vid.addEventListener('pause', function () {
         wrapper.classList.remove('is-playing');
         wrapper.classList.add('is-paused');
         if (overlay) overlay.classList.remove('hidden');
+        if (!scrollPausing) {
+          userPaused = true;   /* pausou pelos controles do player */
+        }
       });
 
-      /* IntersectionObserver: autoplay ao rolar, pausa ao sair */
-      const obs = new IntersectionObserver(
+      /* IntersectionObserver: play ao rolar para dentro, pausa ao sair */
+      var obs = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              startPlay();
+              if (!userPaused) startPlay();   /* respeita pausa intencional */
             } else {
-              vid.pause();
+              if (!vid.paused) {
+                scrollPausing = true;
+                vid.pause();
+                scrollPausing = false;
+              }
             }
           });
         },
-        { threshold: 0.5 }
+        { threshold: 0.45 }
       );
       obs.observe(vid);
     })();
